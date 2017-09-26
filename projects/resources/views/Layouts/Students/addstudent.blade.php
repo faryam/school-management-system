@@ -1,0 +1,328 @@
+@extends('Layouts.Dashboard.admindashboard')
+
+@section('style')
+
+<style>
+.sameline
+{
+  display: inline-block;
+}
+
+</style>
+@endsection
+
+
+@section('content')
+
+<div class="row">
+  <div class="col-lg-12">
+   <h3 class="page-header"><i class="fa fa-files-o"></i> ADD STUDENT</h3>
+   <ol class="breadcrumb">
+    <li><i class="fa fa-home"></i><a href="{{ route('dashboard') }}">Home</a></li>
+    <li><i class="icon_document_alt"></i>STUDENTS</li>
+    <li><i class="fa fa-files-o"></i>ADD STUDENT</li>
+  </ol>
+</div>
+</div>
+@if ($errors->any())
+<div class="alert alert-danger">
+  <ul>
+    @foreach ($errors->all() as $error)
+    <li>{{ $error }}</li>
+    @endforeach
+  </ul>
+</div>
+@endif
+<div class="row">
+  <div class="col-lg-12">
+    <section class="panel">
+      <span id="sucess"></span>
+      <header class="panel-heading">
+       STUDENT REGISTRATION
+     </header>
+     <div class="panel-body">
+      <div class="form">
+        <form class="form-validate form-horizontal" id="register_form" method="post" action="" >
+          <div class="form-group ">
+            <label for="first" class="control-label col-lg-2">First Name <span class="required">*</span></label>
+            <div class="col-lg-10">
+              <input class="form-control " id="first_name" name="first_name" type="text" />
+            </div>
+          </div>
+          <div class="form-group ">
+            <label for="last_name" class="control-label col-lg-2">Last Name <span class="required">*</span></label>
+            <div class="col-lg-10">
+              <input class="form-control " id="last_name" name="last_name" type="text" />
+            </div>
+          </div>
+          <div class="form-group ">
+            <label for="sex" class="control-label col-lg-2">SEX <span class="required">*</span></label>
+            <div class="col-lg-10">
+              <div class="radio sameline">
+                <label>
+                  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>MALE   &emsp;     
+
+                </label>
+              </div>
+              <div class="radio sameline">
+                <label>
+                  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">FEMALE      
+
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="datepicker" class="control-label col-lg-2">Date of Birth:<span class="required">*</span></label>                  
+            <div class="col-lg-10">
+              <input type="text" class="form-control " id="datepicker" name="datepicker" />
+            </div>
+
+
+          </div>
+          <div class="form-group ">
+            <label for="phone_number" class="control-label col-lg-2">Phone Number <span class="required">*</span></label>
+            <div class="col-lg-10">
+              <input class="form-control " id="phone_number" name="phone_number" type="tel" />
+            </div>
+          </div>
+          <div class="form-group ">
+            <label for="address" class="control-label col-lg-2">Address <span class="required">*</span></label>
+            <div class="col-lg-10">
+              <input class="form-control " id="address" name="address" type="text" />
+            </div>
+          </div>
+
+          <div class="form-group ">
+            <label for="username" class="control-label col-lg-2">Username <span class="required">*</span></label>
+            <div class="col-lg-10">
+              <input class="form-control " id="username" name="username" type="text" />
+            </div>
+          </div>
+
+          <div class="form-group ">
+            <label for="password" class="control-label col-lg-2">Password <span class="required">*</span></label>
+            <div class="col-lg-10">
+              <input class="form-control " id="password" name="password" type="password" />
+            </div>
+          </div>
+          <div class="form-group ">
+            <label for="confirm_password" class="control-label col-lg-2">Confirm Password <span class="required">*</span></label>
+            <div class="col-lg-10">
+              <input class="form-control " id="confirm_password" name="confirm_password" type="password" />
+            </div>
+          </div>
+          <div class="form-group ">
+            <label for="email" class="control-label col-lg-2">Email <span class="required">*</span></label>
+            <div class="col-lg-10">
+              <input class="form-control " id="email" name="email" type="email" />
+            </div>
+          </div>
+          <input type="hidden" id="parent_id">
+          <div class="form-group ">
+            <label for="parent" class="control-label col-lg-2">Parent Name <span class="required">*</span></label>
+            <div class="col-lg-6 ">
+              <input class="form-control sameline" id="parent" name="parent" type="text" readonly/>
+
+            </div>
+            <a  class="btn btn-primary sameline"  id="parentbtn" href="#myModal" data-toggle="modal">SELECT PARENT</a>
+            <a  class="btn btn-primary sameline"  href="{{ route('addparent') }}">REGISTER PARENT</a>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+              <button class="btn btn-primary" id="sub"  >ADD</button>
+
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+            <h4 class="modal-title">SELECT PARENT</h4>
+          </div>
+          <div class="modal-body">
+            <label for="searchname">Search parent name</label>
+            <input type="text" class="form-control" id="parentname" placeholder="Enter parent name">
+            <div id="searchresult">
+             <table class="table table-striped table-advance table-hover" id="rows">
+               <tbody>
+                <tr>
+
+                 <th><i class="icon_profile"></i> NAME</th>
+                 <th><i class="icon_cogs"></i> Action</th>
+               </tr>
+               @foreach ($parents as $parent)
+               <tr>
+
+                <td>{{$parent->parent_first_name}} {{$parent->parent_last_name}}</td>
+
+                <td>
+
+                  <a class="btn btn-primary"  onclick="fun('{{$parent->parent_id}}','{{$parent->parent_first_name}}','{{$parent->parent_last_name}}');" data-dismiss="modal">Select</a>
+
+                </td>
+              </tr>
+              @endforeach                 
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+</div>
+</div>
+
+@endsection
+{{csrf_field()}}
+
+@section('script')
+<script>
+ $("#register_form").validate({
+
+  submitHandler: function(form) {
+    var first_name=$('#first_name').val();
+    var last_name=$('#last_name').val();
+    var sex=1;
+    if($('#optionsRadios1').is(':checked')){sex=1;}else{sex=0;};
+    var dob=$('#datepicker').val();
+    var phone_number=$('#phone_number').val();
+    var address=$('#address').val();
+    var name=$('#username').val();
+    var password=$('#confirm_password').val();
+    var email=$('#email').val();
+    var parentid=$('#parent_id').val();
+    $.post("{{ route('storestudent') }}", {first_name:first_name,last_name:last_name,sex:sex,dob:dob,phone_number:phone_number,address:address,name:name,password:password,parentid:parentid,email:email,role_name:'student','_token':$('input[name=_token]').val()}, function(data) {
+      $('#sucess').html('<div class="alert alert-success fade in"><strong>Success!</strong> Student has been registered</div>');
+      console.log(data);
+    }).fail(function(xhr, textStatus, errorThrown) { 
+    alert(xhr.responseText);
+  //  $('#sucess').html('<div class="alert alert-block alert-danger fade in"><strong>Oh snap!!</strong> Username is already taken.</div>');
+  $('#username').after('<span class="text-danger"><strong>Oh snap!!</strong>Username is already taken.</span>');
+  });
+
+
+
+  }, 
+
+  rules: {
+    first_name: {
+      required: true
+    },
+    last_name: {
+      required: true
+    },
+    datepicker: {
+      required: true,
+    },
+    phone_number: {
+      required: true,
+      minlength:11,
+      digits: true
+
+    },
+    address: {
+      required: true,
+    },
+    parent: {
+      required: true,
+    },
+
+    username: {
+      required: true,
+      minlength: 5
+    },
+    password: {
+      required: true,
+      minlength: 5
+    },
+    confirm_password: {
+      required: true,
+      minlength: 5,
+      equalTo: "#password"
+    },
+    email: {
+      required: true,
+      email: true
+    }
+  },
+  messages: {                
+   first_name: {
+    required: "Please enter a first name."
+
+  },
+  last_name: {
+    required: "Please enter a last name."
+
+  },
+  datepicker: {
+    required: "Please enter a date of birth."
+
+  },
+  parent: {
+    required: "Please select parent for this student."
+
+  },
+  phone_number: {
+    required: "Please enter a Phone Number.",
+    minlength: "Please enter valid Phone Number.",
+    digits:"Please enter valid Phone Number."
+  },
+  username: {
+    required: "Please enter a Username.",
+    minlength: "Your username must consist of at least 5 characters long."
+  },
+  password: {
+    required: "Please provide a password.",
+    minlength: "Your password must be at least 5 characters long."
+  },
+  confirm_password: {
+    required: "Please provide a password.",
+    minlength: "Your password must be at least 5 characters long.",
+    equalTo: "Please enter the same password as above."
+  },
+  email: "Please enter a valid email address."
+}
+
+});
+
+ $('#datepicker').datepicker({
+  autoclose: true
+});
+
+ $("#parentname").keyup(function(){
+  var input=$("#parentname").val();
+  $.post("{{ route('searchparent') }}", {input:input,'_token':$('input[name=_token]').val()}, function(data) {
+    console.log(data);
+    var txt=' <table class="table table-striped table-advance table-hover" id="rows"><tbody><tr><th><i class="icon_profile"></i> NAME</th><th><i class="icon_cogs"></i> Action</th></tr>';
+    for (var i = 0; i <data.length; i++)
+     {
+      txt=txt+' <tr><td>'+data[i].parent_first_name+' '+data[i].parent_last_name +'</td> <td>    <a class="btn btn-primary" data-dismiss="modal" onclick="fun(\''+data[i].parent_id+'\',\''+data[i].parent_first_name+'\',\''+data[i].parent_last_name+'\');">Select</a> </td></tr>';
+    }
+    txt=txt+' </tbody></table>';
+    $('#searchresult').html(txt);
+    
+  }).fail(function(xhr, textStatus, errorThrown) { 
+    alert(xhr.responseText);
+    
+  });
+});
+
+
+
+function fun($id,$fname,$lname) {
+  
+  $('#parent').val($fname+' '+$lname);
+   $('#parent_id').val($id);
+}
+
+
+</script>
+
+
+@endsection
