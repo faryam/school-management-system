@@ -30,7 +30,7 @@
                           <li><a class="" href="{{ route('teachercourses') }}">All Courses</a></li>
                           <li><a class="" href="{{ route('teachercoursesstudent') }}"><span>Courses Students</span></a></li>
                           <li><a class="" href="{{ route('teachercoursesexams') }}"><span>Courses Exams</span></a></li>
-                          <li><a class="" href="#"><span>Courses Exams Results</span></a></li>
+                          
                       </ul>
                   </li>      
                 </ul>

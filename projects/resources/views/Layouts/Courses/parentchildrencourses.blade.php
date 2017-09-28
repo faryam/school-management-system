@@ -5,10 +5,11 @@
 
 <div class="row">
   <div class="col-lg-12">
-   <h3 class="page-header"><i class="fa fa-files-o"></i> CHILDREN</h3>
+   <h3 class="page-header"><i class="fa fa-files-o"></i> CHILDREN COURSES</h3>
    <ol class="breadcrumb">
     <li><i class="fa fa-home"></i><a href="{{ route('parentdashboard') }}">Home</a></li>
-    <li><i class="icon_document_alt"></i>CHILDREN</li>
+    <li><i class="icon_document_alt"></i>COURSES</li>
+    <li><i class="icon_document_alt"></i>CHILDREN COURSES</li>
   </ol>
 </div>
 </div>
@@ -18,33 +19,29 @@
     <section class="panel">
       <span id="sucess"></span>
       <header class="panel-heading">
-        CHILDREN
+        CHILDREN COURSES
       </header>
       <div id="re">
         <table class="table table-striped table-advance table-hover" id="rows">
          <tbody>
           <tr>
-           <th><i class="icon_profile"></i> ID</th>
-           <th><i class="icon_profile"></i> NAME</th>
-           <th><i class="icon_profile"></i> SEX</th>
-           <th><i class="icon_profile"></i> DATE OF BIRTH</th>
-           <th><i class="icon_mail_alt"></i> EMAIL</th>
-           <th><i class="icon_profile"></i> PHONE NUMBER</th>
-           <th><i class="icon_profile"></i> ADDRESS</th>
+           <th><i class="icon_profile"></i> CHILD NAME</th>
+           <th><i class="icon_profile"></i> COURSE NAME</th>
+           <th><i class="icon_profile"></i> CLASS NAME</th>
+           <th><i class="icon_profile"></i> COURSE DESCRIPTION</th>
+           
 
          </tr>
          @foreach ($parent[0]->childstudents as $student)
+         @foreach ($student->studentcourses as $course)
 
          <tr>
-          <td >{{$student->student_id}}</td>
           <td>{{$student->student_first_name}} {{$student->student_last_name}}</td>
-          <td>{{$student->student_sex}}</td>
-          <td>{{$student->student_dob}}</td>
-          <td>{{$student->user->email}}</td>
-          <td>{{$student->student_phone_number}}</td>
-          <td>{{$student->student_address}}</td>
+          <td>{{$course->course->course_name}}</td>
+          <td>{{$course->class->class_name}}</td>
+          <td>{{$course->course->course_description}}</td>
         </tr>
-
+        @endforeach
         @endforeach                 
       </tbody>
     </table>

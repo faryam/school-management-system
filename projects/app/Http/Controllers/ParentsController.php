@@ -7,6 +7,8 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Auth;
 use App\ParentModel;
 use App\User;
+use App\Course;
+use App\Teacher;
 
 
 class ParentsController extends Controller
@@ -78,6 +80,57 @@ class ParentsController extends Controller
 
     }
 
+
+
+    public function showparentallCourses()
+    {
+
+        $courses=Course::all();
+        return view('Layouts.Courses.parentallcourses',compact('courses'));
+
+    }
+
+    public function showparentallTeachers()
+    {
+
+        $teachers=Teacher::all();
+        return view('Layouts.Teachers.parentallteachers',compact('teachers'));
+
+    }
+
+
+     public function showparentchildrenCourses()
+    {
+
+        
+        $parent=ParentModel::where('user_id',Auth::guard('web')->user()->id)->get();
+        return view('Layouts.Courses.parentchildrencourses',compact('parent'));
+
+
+    }
+
+
+    public function showparentchildrenTeachers()
+    {
+
+        $parent=ParentModel::where('user_id',Auth::guard('web')->user()->id)->get();
+        return view('Layouts.Teachers.parentchildrenteachers',compact('parent'));
+    }
+
+
+    public function showparentchildrenExams()
+    {
+
+        $parent=ParentModel::where('user_id',Auth::guard('web')->user()->id)->get();
+        return view('Layouts.Exams.parentchildrenexams',compact('parent'));
+    }
+
+
+    public function showparentchildrenexamReults()
+    {
+        $parent=ParentModel::where('user_id',Auth::guard('web')->user()->id)->get();
+        return view('Layouts.Exams.parentchildrenexamresults',compact('parent'));
+    }
      
 
 

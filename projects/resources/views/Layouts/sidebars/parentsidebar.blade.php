@@ -36,8 +36,8 @@
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
                       <ul class="sub">
-                          <li><a class="" href="#">All Courses</a></li>
-                          <li><a class="" href="#">Children Courses</a></li>
+                          <li><a class="" href="{{ route('parentallcourses') }}">All Courses</a></li>
+                          <li><a class="" href="{{ route('childrenstudentscourses') }}">Children Courses</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">                     
@@ -47,8 +47,8 @@
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
                       <ul class="sub">
-                          <li><a class="" href="#">All Teachers</a></li>
-                          <li><a class="" href="#"><span>Children Teachers</span></a></li>
+                          <li><a class="" href="{{ route('parentallteachers') }}">All Teachers</a></li>
+                          <li><a class="" href="{{ route('childrenstudentsteachers') }}"><span>Children Teachers</span></a></li>
                       </ul>
                                          
                   </li>
@@ -59,8 +59,8 @@
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
                       <ul class="sub">                          
-                          <li><a class="" href="#">Children Exams</a></li>
-                          <li><a class="" href="#"><span>Exams Result</span></a></li>
+                          <li><a class="" href="{{ route('childrenstudentsexams') }}">Children Exams</a></li>
+                          <li><a class="" href="{{ route('childrenstudentsexamreults') }}"><span>Exams Result</span></a></li>
                       </ul>
                   </li>
                   

@@ -101,4 +101,56 @@ class StudentsController extends Controller
             return "false";
         
     }
+
+
+    public function showstudentCourses()
+    {
+
+        
+        $student=Student::where('user_id',Auth::guard('web')->user()->id)->get();
+        return view('Layouts.Courses.studentcourses',compact('student'));
+
+
+    }
+
+    public function showstudentClasses()
+    {
+
+        
+        $student=Student::where('user_id',Auth::guard('web')->user()->id)->get();
+        return view('Layouts.Classes.studentClasses',compact('student'));
+
+
+    }
+
+    public function showstudentExams()
+    {
+
+        
+        $student=Student::where('user_id',Auth::guard('web')->user()->id)->get();
+        return view('Layouts.Exams.studentexams',compact('student'));
+
+
+    }
+
+    public function showstudentTeachers()
+    {
+
+        
+        $student=Student::where('user_id',Auth::guard('web')->user()->id)->get();
+        return view('Layouts.Teachers.studentteachers',compact('student'));
+
+
+    }
+
+
+    public function showstudentResults()
+    {
+
+        
+        $student=Student::where('user_id',Auth::guard('web')->user()->id)->get();
+        return view('Layouts.Exams.studentexamresults',compact('student'));
+
+
+    }
 }

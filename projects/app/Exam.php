@@ -14,4 +14,10 @@ class Exam extends Model
    {
    		return $this->hasOne('App\Course','course_id','course_id');
    }
+
+
+   public function examstudentsgrade()
+  {
+    return $this->hasMany('App\Student_exam_grade','exam_id','exam_id');
+  }
 }

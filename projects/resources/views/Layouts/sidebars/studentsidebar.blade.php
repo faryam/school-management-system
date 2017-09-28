@@ -6,7 +6,7 @@
                   <li class="active">
                       <a class="" href="{{ route('studentdashboard') }}">
                           <i class="icon_house_alt"></i>
-                          <span>Dashboard</span>
+                          <span>HOME</span>
                       </a>
                   </li>
                   <li class="sub-menu">
@@ -16,8 +16,7 @@
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
                       <ul class="sub">
-                          <li><a class="" href="#">All Students Classes</a></li>
-                          <li><a class="" href="#">Classes Timetable</a></li>
+                          <li><a class="" href="{{ route('studentclasses') }}">All Students Classes</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">
@@ -27,8 +26,8 @@
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
                       <ul class="sub">
-                          <li><a class="" href="#">All Student Corses</a></li>
-                          <li><a class="" href="#"><span>Course Teachers</span></a></li>
+                          <li><a class="" href="{{ route('studentcourses') }}">All Student Courses</a></li>
+                          <li><a class="" href="{{ route('studentteachers') }}"><span>Course Teachers</span></a></li>
                       </ul>
                   </li>                                               
                   <li class="sub-menu">
@@ -38,8 +37,7 @@
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
                       <ul class="sub">                          
-                          <li><a class="" href="#">All Student Exams</a></li>
-                          <li><a class="" href="#"><span>Exam Courses</span></a></li>
+                          <li><a class="" href="studentexams">All Student Exams</a></li>
                       </ul>
                   </li>
 
@@ -50,7 +48,7 @@
                       </a>
                   </li>
                   <li>                     
-                      <a class="" href="#">
+                      <a class="" href="{{ route('studentresults') }}">
                           <i class="icon_piechart"></i>
                           <span>RESULT</span>
                           

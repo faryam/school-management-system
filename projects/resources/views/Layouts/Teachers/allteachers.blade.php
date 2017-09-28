@@ -47,7 +47,7 @@
                                 
                                  <td>
                                   <div class="btn-group">
-                                    <form action="{{ route('teachercourses') }}" method="post">
+                                    <form action="{{ route('allteachercourses') }}" method="post">
                                       {{csrf_field()}}
                                       <input type="hidden" name="id" value="{{$teacher->teacher_id}}">
                                       <button type="submit" class="btn btn-primary"> <i class="fa fa-book"></i> Courses </button>

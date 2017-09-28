@@ -27,4 +27,10 @@ class Student extends Model
   {
     return $this->hasMany('App\Student_course','student_id','student_id');
   }
+
+
+  public function studentexams()
+  {
+    return $this->hasMany('App\Student_exam_grade','student_id','student_id');
+  }
 }

@@ -38,7 +38,7 @@ Route::group(['middleware'=>['authen','roles:admin']],function(){
 	Route::get('/students/addstudent',['as'=>'addstudent','uses'=>'StudentsController@addStudent']);
 	Route::post('/students/addstudent/newstudent',['as'=>'storestudent','uses'=>'StudentsController@storeStudent']);
 	Route::post('/students/addstudent/searchparent',['as'=>'searchparent','uses'=>'StudentsController@seacrchParent']);
-	Route::post('/students/studentcourses',['as'=>'studentcourses','uses'=>'StudentsController@studentCourses']);
+	Route::post('/students/studentcourses',['as'=>'allstudentcourses','uses'=>'StudentsController@studentCourses']);
 	Route::post('/students/studentcourses/addstudentcourse',['as'=>'addstudentcourse','uses'=>'StudentsController@addstudentCourse']);
 
 	Route::get('/classes',['as'=>'classes','uses'=>'ClassesController@allClasses']);
@@ -49,7 +49,7 @@ Route::group(['middleware'=>['authen','roles:admin']],function(){
 	Route::get('/teachers',['as'=>'teachers','uses'=>'TeachersController@allTeachers']);
 	Route::get('/teachers/addteacher',['as'=>'addteacher','uses'=>'TeachersController@addTeacher']);
 	Route::post('/teachers/addteacher/newteacher',['as'=>'storeteacher','uses'=>'TeachersController@storeTeacher']);
-	Route::post('/teachers/teachercourses',['as'=>'teachercourses','uses'=>'TeachersController@teacherCourses']);
+	Route::post('/teachers/teachercourses',['as'=>'allteachercourses','uses'=>'TeachersController@teacherCourses']);
 	Route::post('/teachers/teachercourses/addteachercourse',['as'=>'addteachercourse','uses'=>'TeachersController@addteacherCourse']);
 
 	Route::get('/parents',['as'=>'parents','uses'=>'ParentsController@allParents']);
@@ -61,6 +61,10 @@ Route::group(['middleware'=>['authen','roles:admin']],function(){
 	Route::get('/exams/examresults',['as'=>'examresults','uses'=>'ExamsController@examResults']);
 	Route::post('/exams/addexam/newexam',['as'=>'storeexam','uses'=>'ExamsController@storeExam']);
 	Route::post('/exams/examresults/newexamresult',['as'=>'newexamresult','uses'=>'ExamsController@storeexamResult']);
+	Route::post('/exams/examresults/viewexamresult',['as'=>'viewexamresult','uses'=>'ExamsController@viewexamResult']);
+	Route::post('/exams/examresults/newexamresult/addexamresult',['as'=>'addexamresult','uses'=>'ExamsController@addexamResult']);
+	Route::post('/exams/examresults/newexamresult/updateexamresult',['as'=>'updateexamresult','uses'=>'ExamsController@updateexamResult']);
+	Route::post('/exams/examresults/newexamresult/addexamresultclass',['as'=>'addexamresultclass','uses'=>'ExamsController@addexamresultClass']);
 
 	Route::get('/admins',['as'=>'admins','uses'=>'AdminsController@allAdmins']);
 	Route::get('/admins/addadmin',['as'=>'addadmin','uses'=>'AdminsController@addadmin']);
@@ -74,6 +78,11 @@ Route::group(['middleware'=>['authen','roles:admin']],function(){
 Route::group(['middleware'=>['authen','roles:student']],function(){
 	
 	Route::get('/studentdashboard',['as'=>'studentdashboard','uses'=>'DashboardController@studentdashboard']);
+	Route::get('/studentcourses',['as'=>'studentcourses','uses'=>'StudentsController@showstudentCourses']);
+	Route::get('/studentclasses',['as'=>'studentclasses','uses'=>'StudentsController@showstudentClasses']);
+	Route::get('/studentexams',['as'=>'studentexams','uses'=>'StudentsController@showstudentExams']);
+	Route::get('/studentteachers',['as'=>'studentteachers','uses'=>'StudentsController@showstudentTeachers']);
+	Route::get('/studentresults',['as'=>'studentresults','uses'=>'StudentsController@showstudentResults']);
 	
 });
 
@@ -91,4 +100,10 @@ Route::group(['middleware'=>['authen','roles:parent']],function(){
 	Route::get('/parentdashboard',['as'=>'parentdashboard','uses'=>'DashboardController@parentdashboard']);
 	Route::get('/childrenstudents',['as'=>'childrenstudents','uses'=>'ParentsController@showparentChildren']);
 	Route::get('/childrenstudentsclasses',['as'=>'childrenstudentsclasses','uses'=>'ParentsController@showparentchildrenClasses']);
+	Route::get('/childrenstudentscourses',['as'=>'childrenstudentscourses','uses'=>'ParentsController@showparentchildrenCourses']);
+	Route::get('/parentallcourses',['as'=>'parentallcourses','uses'=>'ParentsController@showparentallCourses']);
+	Route::get('/parentallteachers',['as'=>'parentallteachers','uses'=>'ParentsController@showparentallTeachers']);
+	Route::get('/childrenstudentsteachers',['as'=>'childrenstudentsteachers','uses'=>'ParentsController@showparentchildrenTeachers']);
+	Route::get('/childrenstudentsexams',['as'=>'childrenstudentsexams','uses'=>'ParentsController@showparentchildrenExams']);
+	Route::get('/childrenstudentsexamreults',['as'=>'childrenstudentsexamreults','uses'=>'ParentsController@showparentchildrenexamReults']);
 });
