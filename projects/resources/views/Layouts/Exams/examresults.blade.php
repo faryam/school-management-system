@@ -19,7 +19,7 @@
 			<span id="sucess"></span>
 			<header class="panel-heading">
 				EXAM RESULTS &emsp;&emsp;&emsp;&emsp;
-				<a class="btn btn-primary" href="#myModal" data-toggle="modal" ><i class="icon_plus_alt2"></i> Add Exam Result</a>
+				<a class="btn btn-primary pull-right" href="#myModal" data-toggle="modal" ><i class="icon_plus_alt2"></i> Add Exam Result</a>
 			</header>
 			<div id="re">
 				<table class="table table-striped table-advance table-hover rtable" id="rows">
@@ -37,10 +37,7 @@
 							<td>{{$exam_class->class->class_name}}</td>
 							<td>
 									<input type="hidden" name="exam_id"  class="abc" data-eid="{{$exam_class->exam->exam_id}}" data-cid="{{$exam_class->class->class_id}}">
-									
-					
 									<a class="btn btn-primary view-btn"><i class="fa fa-eye"></i>VIEW</a>
-								
 							</td>
 						</tr>
 						@endforeach                 
@@ -161,11 +158,30 @@ $(".table tr").each(function(index, val) {
 				var exam_id=$(this).data('eid');
 				var course_id=$(this).data('cid');
 				var class_id=$(this).val();
-				//alert(exam_id+" "+course_id+" "+class_id);
 				$("#exam_id").val(exam_id);
 				$("#course_id").val(course_id);
 				$("#class_id").val(class_id);
-				$("#form-post").submit();
+				$.post("{{ route('checkexamresultclass') }}", {exam_id: exam_id,class_id:class_id}, function(data) {
+					console.log(data);
+					if (data=="true")
+					{
+
+							$("#form-post").submit();
+					}
+					else
+					{
+						$('#sucess').html('<div class="alert alert-block alert-danger fade in"><strong>Oh snap!!</strong> Exam Result is already entered.</div>');
+					}
+
+
+				}).fail(function(xhr, textStatus, errorThrown) { 
+ 		//alert(xhr.responseText);
+ 		
+   
+  });
+
+
+			
 
 
 
@@ -185,7 +201,7 @@ $(".table tr").each(function(index, val) {
 			pa.find('.abc').each(function(index, val) {
 				var exam_id=$(this).data('eid');
 				var class_id=$(this).data('cid');
-				alert(exam_id+"  "+class_id);
+				//alert(exam_id+"  "+class_id);
 				$("#exams_id").val(exam_id);
 				$("#classs_id").val(class_id);
 				$("#form-postupdate").submit();

@@ -53,7 +53,6 @@
 									<option value="C">C</option>
 									<option value="C-">C-</option>
 									<option value="D+">D+</option>
-									<option value="D+">D+</option>
 									<option value="F">F</option>
 
 								</select>
@@ -112,7 +111,9 @@
 				var grade=$(this).val();
 				$.post("{{ route('addexamresult') }}", {class_id: classs_id,exam_id:exams_id,student_id:student_id,grade:grade}, function(data) {
 					console.log(data);
-					$('#sucess').html('<div class="alert alert-success fade in"><strong>Success!</strong> Exam has been added.</div>');
+					$("#sucess").fadeIn();
+					$('#sucess').html('<div class="alert alert-success fade in"><strong>Success!</strong> Exam Result has been Saved.</div>');
+					$("#sucess").fadeOut(2000);
 				}).fail(function(xhr, textStatus, errorThrown) { 
 					alert(xhr.responseText);
 				});
@@ -135,6 +136,9 @@
 				var grade=$(this).val();
 				$.post("{{ route('updateexamresult') }}", {class_id: class_id,exam_id:exam_id,student_id:student_id,grade:grade}, function(data) {
 					console.log(data);
+					$("#sucess").fadeIn();
+					$('#sucess').html('<div class="alert alert-success fade in"><strong>Success!</strong> Exam Result has been Saved.</div>');
+					$("#sucess").fadeOut(2000);
 				}).fail(function(xhr, textStatus, errorThrown) { 
 					alert(xhr.responseText);
 				});

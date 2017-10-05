@@ -5,12 +5,12 @@
 
 <div class="row">
 	<div class="col-lg-12">
-		<h3 class="page-header"><i class="fa fa-files-o"></i> ALL TEACHERS</h3>
+		<h3 class="page-header"><i class="fa fa-book"></i> TEACHER COURSES</h3>
 		<ol class="breadcrumb">
 			<li><i class="fa fa-home"></i><a href="{{ route('dashboard') }}">Home</a></li>
-			<li><i class="icon_document_alt"></i>TEACHERS</li>
-			<li><i class="fa fa-files-o"></i>ALL TEACHERS</li>
-			<li><i class="fa fa-files-o"></i>TEACHER COURSES</li>
+			<li><i class="fa fa-group"></i>TEACHERS</li>
+			<li><i class="fa fa-group"></i>ALL TEACHERS</li>
+			<li><i class="fa fa-book"></i>TEACHER COURSES</li>
 		</ol>
 	</div>
 </div>
@@ -20,7 +20,7 @@
 			<span id="sucess"></span>
 			<header class="panel-heading">
 				REGISTERED TEACHER COURSES &emsp;&emsp;&emsp;&emsp;
-				<a class="btn btn-primary" href="#myModal" data-toggle="modal" ><i class="icon_plus_alt2"></i> Add Course</a>
+				<a class="btn btn-primary pull-right" href="#myModal" data-toggle="modal" ><i class="icon_plus_alt2"></i> Add Course</a>
 			</header>
 			<input type="hidden" value="{{$teacher_id}}" id="teacher_id">
 			<div id="re">
@@ -28,8 +28,8 @@
 					<tbody>
 						<tr>
 
-							<th><i class="icon_profile"></i> COURSE NAME</th>
-							<th><i class="icon_profile"></i> CLASS NAME</th>
+							<th><i class="fa fa-book"></i> COURSE NAME</th>
+							<th><i class="icon_desktop"></i> CLASS NAME</th>
 						</tr>
 						@foreach ($teacher_courses as $teacher_course)
 						<tr>
@@ -57,8 +57,8 @@
 						<tbody>
 							<tr>
 
-								<th><i class="icon_profile"></i> NAME</th>
-								<th><i class="icon_profile"></i> CLASSES</th>
+								<th><i class="fa fa-book"></i> COURSE NAME</th>
+								<th><i class="icon_desktop"></i> CLASSES</th>
 								<th><i class="icon_cogs"></i> Action</th>
 							</tr>
 							@foreach ($courses as $course)

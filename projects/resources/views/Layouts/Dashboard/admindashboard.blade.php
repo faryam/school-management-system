@@ -6,5 +6,7 @@
 
 	@include('Layouts.Header.adminheader')
 	@include('Layouts.sidebars.adminsidebar')
-
+	
 @endsection
+
+

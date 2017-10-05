@@ -5,12 +5,12 @@
 
   <div class="row">
    <div class="col-lg-12">
-    <h3 class="page-header"><i class="fa fa-files-o"></i> ALL STUDENTS</h3>
+    <h3 class="page-header"><i class="fa fa-book"></i>STUDENT COURSES</h3>
     <ol class="breadcrumb">
      <li><i class="fa fa-home"></i><a href="{{ route('dashboard') }}">Home</a></li>
-     <li><i class="icon_document_alt"></i>STUDENTS</li>
-     <li><i class="fa fa-files-o"></i>ALL STUDENTS</li>
-     <li><i class="fa fa-files-o"></i>STUDENT COURSES</li>
+     <li><i class="fa fa-child"></i>STUDENTS</li>
+     <li><i class="fa fa-child"></i>ALL STUDENTS</li>
+     <li><i class="fa fa-book"></i>STUDENT COURSES</li>
    </ol>
  </div>
 </div>
@@ -20,8 +20,8 @@
     <section class="panel">
      <span id="sucess"></span>
      <header class="panel-heading">
-       REGISTERED STUDENT COURSES &emsp;&emsp;&emsp;&emsp;
-       <a class="btn btn-primary" href="#myModal" data-toggle="modal" ><i class="icon_plus_alt2"></i> Add Course</a>
+       REGISTERED STUDENT COURSES 
+       <a class="btn btn-primary pull-right" href="#myModal" data-toggle="modal" ><i class="icon_plus_alt2"></i> Add Course</a>
      </header>
      <input type="hidden" value="{{$student_id}}" id="student_id">
      <div id="re">
@@ -29,8 +29,8 @@
        <tbody>
         <tr>
 
-         <th><i class="icon_profile"></i> COURSE NAME</th>
-         <th><i class="icon_profile"></i> CLASS NAME</th>
+         <th><i class="fa fa-book"></i> COURSE NAME</th>
+         <th><i class="icon_desktop"></i> CLASS NAME</th>
        </tr>
        @foreach ($student_courses as $student_course)
        <tr>
@@ -58,29 +58,29 @@
            <tbody>
             <tr>
 
-             <th><i class="icon_profile"></i> NAME</th>
-             <th><i class="icon_profile"></i> CLASSES</th>
+             <th><i class="fa fa-book"></i> COURSE NAME</th>
+             <th><i class="icon_desktop"></i> CLASSES</th>
              <th><i class="icon_cogs"></i> Action</th>
            </tr>
            @foreach ($courses as $course)
-                @if (count($course->classes)!=0)         
-                   <tr>
+           @if (count($course->classes)!=0)         
+           <tr>
 
-                    <td>{{$course->course_name}}</td>
-                    <td>
-                      <select class="form-control m-bot15 class_id" data-id="{{$course->course_id}}">
-                        @foreach($course->classes as $classroom)
-                        <option value="{{$classroom->class_id}}">{{$classroom->class_name}}</option>
-                        @endforeach
-                      </select>
-                    </td>
-                    <td>
+            <td>{{$course->course_name}}</td>
+            <td>
+              <select class="form-control m-bot15 class_id" data-id="{{$course->course_id}}">
+                @foreach($course->classes as $classroom)
+                <option value="{{$classroom->class_id}}">{{$classroom->class_name}}</option>
+                @endforeach
+              </select>
+            </td>
+            <td>
 
-                      <a class="btn btn-primary add-btn"   data-dismiss="modal">ADD</a>
+              <a class="btn btn-primary add-btn"  title="ADD COURSE" data-dismiss="modal">ADD</a>
 
-                    </td>
-                  </tr>
-              @endif
+            </td>
+          </tr>
+          @endif
           @endforeach                 
         </tbody>
       </table>
@@ -111,12 +111,20 @@
             console.log(data);
             if(data=="false")
             {
-              $('#sucess').html('<div class="alert alert-block alert-danger fade in"><strong>Oh snap!!</strong> course name is already added.</div>');
+              $("#sucess").fadeIn();
+              $('#sucess').html('<div class="alert alert-block alert-danger fade in"><strong>Oh snap!!</strong> Course is already added.</div>');
+              $("#sucess").fadeOut(3000);
+              scrollTo(0,0);
+
             }
             else
             {
-             $('#sucess').html('<div class="alert alert-success fade in"><strong>Success!</strong> Course has been added</div>');
-             window.location.reload(true);
+              $("#sucess").fadeIn();
+              $('#sucess').html('<div class="alert alert-success fade in"><strong>Success!</strong> Course has been added</div>');
+              $("#sucess").fadeOut(3000);
+              scrollTo(0,0);
+              $('#sucess').html('<div class="alert alert-success fade in"><strong>Success!</strong> Course has been added</div>');
+              window.location.reload(true);
               //  $("#re").load(location.href + " #re>*", "");
             }
           }).fail(function(xhr, textStatus, errorThrown) { 

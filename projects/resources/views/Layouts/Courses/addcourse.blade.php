@@ -5,11 +5,11 @@
 
  <div class="row">
 				<div class="col-lg-12">
-					<h3 class="page-header"><i class="fa fa-files-o"></i> ADD COURSE</h3>
+					<h3 class="page-header"><i class="fa fa-book"></i> ADD COURSE</h3>
 					<ol class="breadcrumb">
 						<li><i class="fa fa-home"></i><a href="{{ route('dashboard') }}">Home</a></li>
-						<li><i class="icon_document_alt"></i>COURSES</li>
-						<li><i class="fa fa-files-o"></i>ADD COURSE</li>
+						<li><i class="fa fa-book"></i>COURSES</li>
+						<li><i class="fa fa-book"></i>ADD COURSE</li>
 					</ol>
 				</div>
 			</div>
@@ -66,7 +66,11 @@
  	var desc=$('#desc').val();
  	console.log(desc);
  	$.post("{{ route('storecourse') }}", {course_name:course_name,desc:desc,'_token':$('input[name=_token]').val()}, function(data) {
- 		$('#sucess').html('<div class="alert alert-success fade in"><strong>Success!</strong> Course has been added.</div>');
+ 		
+    $("#sucess").fadeIn();
+     $('#sucess').html('<div class="alert alert-success fade in"><strong>Success!</strong> Course has been added.</div>');
+     $("#sucess").fadeOut(3000);
+     scrollTo(0,0);
  		console.log(data);
  	}).fail(function(xhr, textStatus, errorThrown) { 
  		//alert(xhr.responseText);

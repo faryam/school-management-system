@@ -5,11 +5,11 @@
 
 <div class="row">
 	<div class="col-lg-12">
-		<h3 class="page-header"><i class="fa fa-files-o"></i> ALL TEACHERS</h3>
+		<h3 class="page-header"><i class="fa fa-group"></i> ALL TEACHERS</h3>
 		<ol class="breadcrumb">
 			<li><i class="fa fa-home"></i><a href="{{ route('parentdashboard') }}">Home</a></li>
-			<li><i class="icon_document_alt"></i>TEACHERS</li>
-			<li><i class="fa fa-files-o"></i>ALL TEACHERS</li>
+			<li><i class="fa fa-group"></i>TEACHERS</li>
+			<li><i class="fa fa-group"></i>ALL TEACHERS</li>
 		</ol>
 	</div>
 </div>
@@ -29,7 +29,7 @@
 							<th><i class="icon_profile"></i> SEX</th>
 							<th><i class="icon_profile"></i> DATE OF BIRTH</th>
 							<th><i class="icon_mail_alt"></i> EMAIL</th>
-							<th><i class="icon_profile"></i> PHONE NUMBER</th>
+							<th><i class="fa fa-phone"></i> PHONE NUMBER</th>
 							<th><i class="icon_profile"></i> ADDRESS</th>
 						</tr>
 						@foreach ($teachers as $teacher)

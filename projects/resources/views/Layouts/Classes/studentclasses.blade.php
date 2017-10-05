@@ -5,11 +5,11 @@
 
 <div class="row">
   <div class="col-lg-12">
-   <h3 class="page-header"><i class="fa fa-files-o"></i> STUDENT CLASSES</h3>
+   <h3 class="page-header"><i class="icon_desktop"></i> STUDENT CLASSES</h3>
    <ol class="breadcrumb">
     <li><i class="fa fa-home"></i><a href="{{ route('studentdashboard') }}">Home</a></li>
-    <li><i class="icon_document_alt"></i>CLASSES</li>
-    <li><i class="fa fa-files-o"></i>STUDENT CLASSES</li>
+    <li><i class="icon_desktop"></i>CLASSES</li>
+    <li><i class="icon_desktop"></i>STUDENT CLASSES</li>
   </ol>
 </div>
 </div>
@@ -22,18 +22,19 @@
         STUDENT CLASSES
       </header>
       <div id="re">
-        <table class="table table-striped table-advance table-hover" id="rows">
+        @if (count($student->studentcourses)!=0)
+           <table class="table table-striped table-advance table-hover" id="rows">
          <tbody>
           <tr>
            <th><i class="icon_profile"></i> ID</th>
-           <th><i class="icon_profile"></i> CLASSROOM NAME</th>
+            <th><i class="icon_profile"></i> CLASSROOM NAME</th>
            <th><i class="icon_profile"></i> CLASSROOM SECTION</th>
-           <th><i class="icon_mail_alt"></i>CLASSROOM DATE</th>  
-           <th><i class="icon_mail_alt"></i>CLASSROOM TIME</th>
-           <th><i class="icon_mail_alt"></i>COURSE NAME</th>
+           <th><i class="fa fa-calendar"></i> CLASSROOM DATE</th>  
+           <th><i class="fa fa-clock-o"></i> CLASSROOM TIME</th>
+           <th><i class="fa fa-book"></i> COURSE</th>
            
          </tr>
-         @foreach ($student[0]->studentcourses as $classroom)
+         @foreach ($student->studentcourses as $classroom)
          <tr>
            <td >{{$classroom->class->class_id}}</td>
            <td>{{$classroom->class->class_name}}</td>
@@ -45,6 +46,10 @@
          @endforeach                 
        </tbody>
      </table>
+        @else
+          <span class="text-danger"><strong>No Student Classes .</strong></span>
+        @endif
+       
    </div>
  </section>
 </div>

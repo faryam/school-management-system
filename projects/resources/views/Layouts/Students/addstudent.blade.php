@@ -16,11 +16,11 @@
 
 <div class="row">
   <div class="col-lg-12">
-   <h3 class="page-header"><i class="fa fa-files-o"></i> ADD STUDENT</h3>
+   <h3 class="page-header"><i class="fa fa-child"></i> ADD STUDENT</h3>
    <ol class="breadcrumb">
     <li><i class="fa fa-home"></i><a href="{{ route('dashboard') }}">Home</a></li>
-    <li><i class="icon_document_alt"></i>STUDENTS</li>
-    <li><i class="fa fa-files-o"></i>ADD STUDENT</li>
+    <li><i class="fa fa-child"></i>STUDENTS</li>
+    <li><i class="fa fa-child"></i>ADD STUDENT</li>
   </ol>
 </div>
 </div>
@@ -60,13 +60,13 @@
             <div class="col-lg-10">
               <div class="radio sameline">
                 <label>
-                  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>MALE   &emsp;     
+                  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked/>MALE   &emsp;     
 
                 </label>
               </div>
               <div class="radio sameline">
                 <label>
-                  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">FEMALE      
+                  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"/>FEMALE      
 
                 </label>
               </div>
@@ -152,7 +152,7 @@
                <tbody>
                 <tr>
 
-                 <th><i class="icon_profile"></i> NAME</th>
+                 <th><i class="fa fa-user"></i> NAME</th>
                  <th><i class="icon_cogs"></i> Action</th>
                </tr>
                @foreach ($parents as $parent)
@@ -162,7 +162,7 @@
 
                 <td>
 
-                  <a class="btn btn-primary"  onclick="fun('{{$parent->parent_id}}','{{$parent->parent_first_name}}','{{$parent->parent_last_name}}');" data-dismiss="modal">Select</a>
+                  <a class="btn btn-primary" title="ADD PARENT" onclick="fun('{{$parent->parent_id}}','{{$parent->parent_first_name}}','{{$parent->parent_last_name}}');" data-dismiss="modal">Select</a>
 
                 </td>
               </tr>
@@ -198,10 +198,14 @@
     var email=$('#email').val();
     var parentid=$('#parent_id').val();
     $.post("{{ route('storestudent') }}", {first_name:first_name,last_name:last_name,sex:sex,dob:dob,phone_number:phone_number,address:address,name:name,password:password,parentid:parentid,email:email,role_name:'student','_token':$('input[name=_token]').val()}, function(data) {
-      $('#sucess').html('<div class="alert alert-success fade in"><strong>Success!</strong> Student has been registered</div>');
+       $("#sucess").fadeIn();
+    $('#sucess').html('<div class="alert alert-success fade in"><strong>Success!</strong> Student has been registered</div>');
+     $("#sucess").fadeOut(3000);
+      scrollTo(0,0);
+      
       console.log(data);
     }).fail(function(xhr, textStatus, errorThrown) { 
-    alert(xhr.responseText);
+    //alert(xhr.responseText);
   //  $('#sucess').html('<div class="alert alert-block alert-danger fade in"><strong>Oh snap!!</strong> Username is already taken.</div>');
   $('#username').after('<span class="text-danger"><strong>Oh snap!!</strong>Username is already taken.</span>');
   });

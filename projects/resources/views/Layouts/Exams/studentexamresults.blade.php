@@ -5,10 +5,10 @@
 
 <div class="row">
   <div class="col-lg-12">
-   <h3 class="page-header"><i class="fa fa-files-o"></i> STUDENT EXAMS RESULTS</h3>
+   <h3 class="page-header"><i class="fa fa-list-alt"></i> STUDENT EXAMS RESULTS</h3>
    <ol class="breadcrumb">
     <li><i class="fa fa-home"></i><a href="{{ route('studentdashboard') }}">Home</a></li>
-    <li><i class="icon_document_alt"></i>RESULTS</li>
+    <li><i class="fa fa-list-alt"></i>RESULTS</li>
   </ol>
 </div>
 </div>
@@ -21,17 +21,18 @@
        STUDENT EXAMS RESULTS
       </header>
       <div id="re">
-        <table class="table table-striped table-advance table-hover" id="rows">
+        @if (count($student->studentexams)!=0)
+          <table class="table table-striped table-advance table-hover" id="rows">
          <tbody>
           <tr>
            
-           <th><i class="icon_profile"></i> EXAMS NAME</th>
-           <th><i class="icon_mail_alt"></i>COURSE NAME</th>
-           <th><i class="icon_mail_alt"></i>CLASS NAME</th>
-           <th><i class="icon_mail_alt"></i>GRADE</th>
+           <th><i class="fa fa-clipboard"></i> EXAMS NAME</th>
+           <th><i class="fa fa-book"></i> COURSE NAME</th>
+           <th><i class="icon_desktop"></i> CLASS NAME</th>
+           <th><i class="fa fa-sliders"></i> GRADE</th>
            
          </tr>
-         @foreach ($student[0]->studentexams as $exam)
+         @foreach ($student->studentexams as $exam)
          
          <tr>
            <td>{{$exam->exam->exam_name}}</td>
@@ -43,6 +44,10 @@
          @endforeach                 
        </tbody>
      </table>
+        @else
+          <span class="text-danger"><strong>No Student Exam Results .</strong></span>
+        @endif
+        
    </div>
  </section>
 </div>

@@ -5,11 +5,11 @@
 
 <div class="row">
   <div class="col-lg-12">
-   <h3 class="page-header"><i class="fa fa-files-o"></i> ADD EXAM</h3>
+   <h3 class="page-header"><i class="fa fa-clipboard"></i> ADD EXAM</h3>
    <ol class="breadcrumb">
     <li><i class="fa fa-home"></i><a href="{{ route('dashboard') }}">Home</a></li>
-    <li><i class="icon_document_alt"></i>EXAMS</li>
-    <li><i class="fa fa-files-o"></i>ADD EXAM</li>
+    <li><i class="fa fa-clipboard"></i>EXAMS</li>
+    <li><i class="fa fa-clipboard"></i>ADD EXAM</li>
   </ol>
 </div>
 </div>
@@ -32,7 +32,7 @@
             </div>
           </div>
           <div class="form-group ">
-            <label for="section" class="control-label col-lg-2">Desciption</label>
+            <label for="section" class="control-label col-lg-2">Description</label>
             <div class="col-lg-10">
              <textarea class="form-control " id="desc" name="decs"></textarea>
            </div>
@@ -76,7 +76,7 @@
            <tbody>
             <tr>
 
-             <th><i class="icon_profile"></i> NAME</th>
+             <th><i class="fa fa-book"></i>COURSE NAME</th>
              <th><i class="icon_cogs"></i> Action</th>
            </tr>
            @foreach ($courses as $course)
@@ -86,7 +86,7 @@
 
             <td>
 
-              <a class="btn btn-primary"  onclick="fun('{{$course->course_id}}','{{$course->course_name}}');" data-dismiss="modal">Select</a>
+              <a class="btn btn-primary" title="ADD COURSE" onclick="fun('{{$course->course_id}}','{{$course->course_name}}');" data-dismiss="modal">Select</a>
 
             </td>
           </tr>
@@ -115,7 +115,11 @@
     var desc=$('#desc').val();
     console.log(desc);
     $.post("{{ route('storeexam') }}", {exam_name:exam_name,desc:desc,course_id:course_id,'_token':$('input[name=_token]').val()}, function(data) {
+     
+      $("#sucess").fadeIn();
      $('#sucess').html('<div class="alert alert-success fade in"><strong>Success!</strong> Exam has been added.</div>');
+     $("#sucess").fadeOut(3000);
+     scrollTo(0,0);
      console.log(data);
    }).fail(function(xhr, textStatus, errorThrown) { 
  		alert(xhr.responseText);

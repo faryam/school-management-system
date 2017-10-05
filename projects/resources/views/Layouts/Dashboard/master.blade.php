@@ -93,9 +93,18 @@
 <script src="{{ URL::asset('js/bootstrap-timepicker.min.js') }}"></script>
 
  <script src="{{ URL::asset('js/moment.min.js') }}"></script>
+ <script src="{{ URL::asset('js/jquery.flot.js') }}"></script>
+ <script src="{{ URL::asset('js/jquery.flot.pie.js') }}"></script>
+ <script src="{{ URL::asset('js/jquery.flot.resize.js') }}"></script>
   @yield('script')
 
   <script>
+    $(document).ready(function($) {
+        $('#profile').click(function(event) {
+          $('#form-profilepost').submit();
+        }); 
+    });
+
    $(document).ready(function() {
 
     $.ajaxSetup({

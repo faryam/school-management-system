@@ -5,11 +5,11 @@
 
 <div class="row">
 	<div class="col-lg-12">
-		<h3 class="page-header"><i class="fa fa-files-o"></i> CHILDREN EXAMS RESULTS</h3>
+		<h3 class="page-header"><i class="fa fa-list-alt"></i> CHILDREN EXAMS RESULTS</h3>
 		<ol class="breadcrumb">
 			<li><i class="fa fa-home"></i><a href="{{ route('parentdashboard') }}">Home</a></li>
-			<li><i class="icon_document_alt"></i>EXAMS</li>
-			<li><i class="fa fa-files-o"></i>CHILDREN EXAMS RESULTS</li>
+			<li><i class="fa fa-clipboard"></i>EXAMS</li>
+			<li><i class="fa fa-list-alt"></i>CHILDREN EXAMS RESULTS</li>
 		</ol>
 	</div>
 </div>
@@ -26,13 +26,13 @@
          <tbody>
           <tr>
            <th><i class="icon_profile"></i> CHILD NAME</th>
-            <th><i class="icon_profile"></i> EXAMS NAME</th>
-           <th><i class="icon_mail_alt"></i>COURSE NAME</th>
-           <th><i class="icon_mail_alt"></i>CLASS NAME</th>
-           <th><i class="icon_mail_alt"></i>GRADE</th>
+            <th><i class="fa fa-clipboard"></i> EXAMS NAME</th>
+           <th><i class="fa fa-book"></i> COURSE NAME</th>
+           <th><i class="icon_desktop"></i> CLASS NAME</th>
+           <th><i class="fa fa-sliders"></i> GRADE</th>
 
          </tr>
-         @foreach ($parent[0]->childstudents as $student)
+         @foreach ($parent->childstudents as $student)
           @foreach ($student->studentexams as $exam)
          
          <tr>

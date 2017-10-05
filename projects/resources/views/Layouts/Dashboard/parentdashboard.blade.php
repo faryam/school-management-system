@@ -4,7 +4,10 @@
 
 @section('container')
 
-	@include('Layouts.Header.parentheader')
-	@include('Layouts.sidebars.parentsidebar')
+@include('Layouts.Header.parentheader')
+@include('Layouts.sidebars.parentsidebar')
+
+
+
 
 @endsection

@@ -22,12 +22,12 @@
                   </li>
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
-                          <i class="icon_genius"></i>
+                          <i class="fa fa-book"></i>
                           <span>COURSES</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
                       <ul class="sub">
-                          <li><a class="" href="{{ route('teachercourses') }}">All Courses</a></li>
+                          <li><a class="" href="{{ route('teachercourses') }}">Teacher Courses</a></li>
                           <li><a class="" href="{{ route('teachercoursesstudent') }}"><span>Courses Students</span></a></li>
                           <li><a class="" href="{{ route('teachercoursesexams') }}"><span>Courses Exams</span></a></li>
                           

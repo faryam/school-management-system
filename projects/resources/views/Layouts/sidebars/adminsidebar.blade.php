@@ -11,7 +11,7 @@
                   </li>
 				  <li class="sub-menu">
                       <a href="javascript:;" class="">
-                          <i class="icon_document_alt"></i>
+                          <i class="fa fa-child"></i>
                           <span>STUDENTS</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
@@ -33,7 +33,7 @@
                   </li>
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
-                          <i class="icon_genius"></i>
+                          <i class="fa fa-book"></i>
                           <span>COURSES</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
@@ -44,7 +44,7 @@
                   </li>
                   <li class="sub-menu">                     
                       <a href="javascript:;" class="">
-                          <i class="icon_piechart"></i>
+                          <i class="fa fa-group"></i>
                           <span>TEACHERS</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
@@ -57,7 +57,7 @@
                              
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
-                          <i class="icon_table"></i>
+                          <i class="fa fa-user"></i>
                           <span>PARENTS</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
@@ -69,7 +69,7 @@
                   
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
-                          <i class="icon_documents_alt"></i>
+                          <i class="fa fa-clipboard"></i>
                           <span>EXAMS</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
@@ -80,15 +80,51 @@
                       </ul>
                   </li>
 
+                  <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="fa fa-money"></i>
+                          <span>FEES</span>
+                          <span class="menu-arrow arrow_carrot-right"></span>
+                      </a>
+                      <ul class="sub">
+                          <li><a class="" href="{{ route('fees') }}">All Fees</a></li>
+                          <li><a class="" href="{{ route('addfee') }}"><span>Add Fee</span></a></li>
+                      </ul>
+                  </li>
+
+                  <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="fa fa-usd"></i>
+                          <span>FINANCES</span>
+                          <span class="menu-arrow arrow_carrot-right"></span>
+                      </a>
+                      <ul class="sub">
+                          <li><a class="" href="{{ route('finances') }}">All Finances</a></li>
+                          <li><a class="" href="{{ route('addfinance') }}"><span>Add Finance</span></a></li>
+                      </ul>
+                  </li>
+
                    <li class="sub-menu">
                       <a href="javascript:;" class="">
-                          <i class="icon_documents_alt"></i>
+                          <i class="fa fa-key"></i>
                           <span>ADMINS</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
                       <ul class="sub">                          
                           <li><a class="" href="{{ route('admins') }}">All Admins</a></li>
                           <li><a class="" href="{{ route('addadmin') }}"><span>Add Admin</span></a></li>
+                      </ul>
+                  </li>
+
+                   <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="icon_genius"></i>
+                          <span>REPORTS</span>
+                          <span class="menu-arrow arrow_carrot-right"></span>
+                      </a>
+                      <ul class="sub">                          
+                          <li><a class="" href="{{ route('financereport') }}">Finance Report</a></li>
+                          <li><a class="" href="{{ route('webreport') }}"><span>Web Report</span></a></li>
                       </ul>
                   </li>
                   

@@ -14,93 +14,143 @@ use App\Student_exam_grade;
 
 class ExamsController extends Controller
 {
-     use AuthenticatesUsers;
-    public function __construct()
+   use AuthenticatesUsers;
+   public function __construct()
+   {
+       $this->middleware('web');
+   }
+
+
+   public function allExams()
+   {
+    $exams=Exam::all();
+    return view('Layouts.Exams.allexams',compact('exams'));
+}
+
+
+public function addExam()
+{
+    $courses=Course::all();
+    return view('Layouts.Exams.addexam',compact('courses'));
+}
+
+public function storeExam(Request $request)
+{
+
+    $this->validate($request,[
+        'exam_name'=>'unique:exams'
+    ]);
+
+    $exam=new Exam;
+    $exam->exam_name=$request->exam_name;
+    $exam->exam_description=$request->desc;
+    $exam->course_id=$request->course_id;
+    $exam->save();
+    return $exam->exam_id;
+
+}
+
+
+public function findExam(Request $request)
+{
+  $exam=Exam::find($request->id);
+  return view('Layouts.Exams.updateexam',compact('exam'));
+}
+
+public function storeupdateExam(Request $request)
+{
+    $exam=Exam::find($request->exam_id);
+    if ($exam->exam_name!=$request->exam_name)
     {
-    	$this->middleware('web');
-    }
-
-
-    public function allExams()
-    {
-        $exams=Exam::all();
-    	return view('Layouts.Exams.allexams',compact('exams'));
-    }
-
-
-     public function addExam()
-    {
-        $courses=Course::all();
-    	return view('Layouts.Exams.addexam',compact('courses'));
-    }
-
-     public function storeExam(Request $request)
-    {
+        $this->validate($request,[
+            'exam_name'=>'unique:exams'
+        ]);
         
-            $this->validate($request,[
-                'exam_name'=>'unique:exams'
-            ]);
-
-            $exam=new Exam;
-            $exam->exam_name=$request->exam_name;
-            $exam->exam_description=$request->desc;
-            $exam->course_id=$request->course_id;
-            $exam->save();
-            return $exam->exam_id;
-        
     }
+    
+    $exam->exam_name=$request->exam_name;
+    $exam->exam_description=$request->desc;
+    $exam->save();
+    return $exam->exam_id;
+
+}
+
+public function deleteExam(Request $request)
+{
+    Student_exam_grade::where('exam_id', $request->exam_id)->delete();
+    Exam_class::where('exam_id',$request->exam_id)->delete();
+    Exam::where('exam_id',$request->exam_id)->delete();
+    return $request->all();
+}
+
+public function examResults()
+{
+    $exam_classes=Exam_class::all();
+    $exams=Exam::all();
+    return view('Layouts.Exams.examresults',compact('exam_classes','exams'));
+
+}
 
 
-    public function examResults()
-    {
-        $exam_classes=Exam_class::all();
-        $exams=Exam::all();
-        return view('Layouts.Exams.examresults',compact('exam_classes','exams'));
+public function storeexamResult(Request $request)
+{
+    $students=Student_course::where('class_id',$request->class_id)->get();
+    $exam=Exam::find($request->exam_id);
+    return view('Layouts.Exams.addexamresult',compact('students','exam'));
+}
 
+
+public function viewexamResult(Request $request)
+{
+    $student_exam_grade=Student_exam_grade::where('exam_id', $request->exam_id)->where('class_id', $request->class_id)->get();
+    return view('Layouts.Exams.viewexamresult',compact('student_exam_grade'));
+}
+
+public function viewteacherexamResult(Request $request)
+{
+    //return $request->all();
+    $student_exam_grade=Student_exam_grade::where('exam_id', $request->exam_id)->where('class_id', $request->class_id)->get();
+    return view('Layouts.Exams.viewteacherexamresult',compact('student_exam_grade'));
+}
+
+
+
+public function checkexamresultClass(Request $request)
+{
+    $exam_class=Exam_class::where('exam_id',$request->exam_id)->where('class_id',$request->class_id)->get();
+    if (count( $exam_class)==0) {
+        return "true";
     }
+    else
+        return "false";
+}
+
+public function addexamresultClass(Request $request)
+{
+    $exam_class=new Exam_class;
+    $exam_class->exam_id=$request->exam_id;   
+    $exam_class->class_id=$request->class_id;
+    $exam_class->save();
+    return $exam_class->exam_class_id;   
+}
 
 
-    public function storeexamResult(Request $request)
-    {
-        $students=Student_course::where('class_id',$request->class_id)->get();
-        $exam=Exam::find($request->exam_id);
-         return view('Layouts.Exams.addexamresult',compact('students','exam'));
-    }
+public function addexamResult(Request $request)
+{
+    $student_exam_grade=new Student_exam_grade;
+    $student_exam_grade->exam_id=$request->exam_id;   
+    $student_exam_grade->class_id=$request->class_id;
+    $student_exam_grade->student_id=$request->student_id;
+    $student_exam_grade->exam_grade=$request->grade;
+    $student_exam_grade->save();
+    return $student_exam_grade->student_exam_grade_id;   
+}
 
 
-    public function viewexamResult(Request $request)
-    {
-        $student_exam_grade=Student_exam_grade::where('exam_id', $request->exam_id)->where('class_id', $request->class_id)->get();
-         return view('Layouts.Exams.viewexamresult',compact('student_exam_grade'));
-    }
-
-
-    public function addexamresultClass(Request $request)
-    {
-        $exam_class=new Exam_class;
-        $exam_class->exam_id=$request->exam_id;   
-        $exam_class->class_id=$request->class_id;
-        $exam_class->save();
-        return $exam_class->exam_class_id;   
-    }
-
-
-    public function addexamResult(Request $request)
-    {
-        $student_exam_grade=new Student_exam_grade;
-        $student_exam_grade->exam_id=$request->exam_id;   
-        $student_exam_grade->class_id=$request->class_id;
-        $student_exam_grade->student_id=$request->student_id;
-        $student_exam_grade->exam_grade=$request->grade;
-        $student_exam_grade->save();
-        return $student_exam_grade->student_exam_grade_id;   
-    }
-
-
-    public function updateexamResult(Request $request)
-    {
-        Student_exam_grade::where('student_id', $request->student_id)
-          ->where('exam_id', $request->exam_id)->where('class_id', $request->class_id)
-          ->update(['exam_grade' => $request->grade]);   
-    }
+public function updateexamResult(Request $request)
+{
+    Student_exam_grade::where('student_id', $request->student_id)
+    ->where('exam_id', $request->exam_id)->where('class_id', $request->class_id)
+    ->update(['exam_grade' => $request->grade]);   
+}
 }

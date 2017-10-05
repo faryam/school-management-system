@@ -14,11 +14,11 @@
 
  <div class="row">
 				<div class="col-lg-12">
-					<h3 class="page-header"><i class="fa fa-files-o"></i> ADD TEACHER</h3>
+					<h3 class="page-header"><i class="fa fa-group"></i> ADD TEACHER</h3>
 					<ol class="breadcrumb">
 						<li><i class="fa fa-home"></i><a href="{{ route('dashboard') }}">Home</a></li>
-						<li><i class="icon_document_alt"></i>TEACHERS</li>
-						<li><i class="fa fa-files-o"></i>ADD TEACHER</li>
+						<li><i class="fa fa-group"></i>TEACHERS</li>
+						<li><i class="fa fa-group"></i>ADD TEACHER</li>
 					</ol>
 				</div>
 			</div>
@@ -59,13 +59,13 @@
                                           <div class="col-lg-10">
                                               <div class="radio sameline">
                                               <label>
-                                                  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>MALE   &emsp;     
+                                                  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked/>MALE   &emsp;     
                                                  
                                               </label>
                                           </div>
                                            <div class="radio sameline">
                                               <label>
-                                                  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">FEMALE      
+                                                  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"/>FEMALE      
                                                  
                                               </label>
                                           </div>
@@ -150,7 +150,11 @@
  	var password=$('#confirm_password').val();
  	var email=$('#email').val();
  	$.post("{{ route('storeteacher') }}", {first_name:first_name,last_name:last_name,sex:sex,dob:dob,phone_number:phone_number,address:address,name:name,password:password,email:email,role_name:'teacher','_token':$('input[name=_token]').val()}, function(data) {
- 		$('#sucess').html('<div class="alert alert-success fade in"><strong>Success!</strong> Teacher has been registered</div>');
+ 		   $("#sucess").fadeIn();
+    $('#sucess').html('<div class="alert alert-success fade in"><strong>Success!</strong> Teacher has been registered</div>');
+     $("#sucess").fadeOut(3000);
+      scrollTo(0,0);
+   
  		console.log(data);
  	}).fail(function(xhr, textStatus, errorThrown) { 
  		//alert(xhr.responseText);

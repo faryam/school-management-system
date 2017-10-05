@@ -6,7 +6,7 @@
             <!--logo start-->
             <a href="index.html" class="logo"><span class="lite">@yield('user')</span></a>
             <!--logo end-->
-
+            @yield('profile')
             <div class="top-nav notification-row">                
                 <!-- notificatoin dropdown start-->
                 <ul class="nav pull-right top-menu">
@@ -19,7 +19,7 @@
                         <ul class="dropdown-menu extended logout">
                             <div class="log-arrow-up"></div>
                             <li class="eborder-top">
-                                <a href="#"><i class="icon_profile"></i> My Profile</a>
+                                <a id="profile" href="#"><i class="icon_profile"></i> My Profile</a>
                             </li>
                             
                             <li>

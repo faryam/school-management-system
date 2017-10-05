@@ -3,72 +3,88 @@
 
 @section('content')
 
- <div class="row">
-				<div class="col-lg-12">
-					<h3 class="page-header"><i class="fa fa-files-o"></i> ALL COURSES</h3>
-					<ol class="breadcrumb">
-						<li><i class="fa fa-home"></i><a href="{{ route('dashboard') }}">Home</a></li>
-						<li><i class="icon_document_alt"></i>COURSES</li>
-						<li><i class="fa fa-files-o"></i>ALL COURSES</li>
-					</ol>
-				</div>
-			</div>
+<div class="row">
+  <div class="col-lg-12">
+   <h3 class="page-header"><i class="fa fa-book"></i> ALL COURSES</h3>
+   <ol class="breadcrumb">
+    <li><i class="fa fa-home"></i><a href="{{ route('dashboard') }}">Home</a></li>
+    <li><i class="fa fa-book"></i>COURSES</li>
+    <li><i class="fa fa-book"></i>ALL COURSES</li>
+  </ol>
+</div>
+</div>
 
 <div class="row">
-                  <div class="col-lg-12" >
-                      <section class="panel">
-                        <span id="sucess"></span>
-                          <header class="panel-heading">
-                              REGISTERED COURSES
-                          </header>
-                          <div id="re">
-                          <table class="table table-striped table-advance table-hover" id="rows">
-                           <tbody>
-                              <tr>
-                                 <th><i class="icon_profile"></i> ID</th>
-                                 <th><i class="icon_profile"></i> COURSE NAME</th>
-                                 <th><i class="icon_profile"></i> COURSE DESCRIPTION</th>
-                                 <th><i class="icon_cogs"></i> Action</th>
-                              </tr>
-                              @foreach ($courses as $course)
-                              <tr>
-                              	<td >{{$course->course_id}}</td>
-                              	<td>{{$course->course_name}}</td>
-                              	<td>{{$course->course_description}}</td>
-                              	 <td>
-                                  <div class="btn-group">
-                                      <a class="btn btn-primary" href="#" ><i class="icon_plus_alt2"></i></a>
-                                      <a class="btn btn-danger"  onclick="fun({{$course->course_id}})"> <i class="icon_close_alt2"></i></a>
-                                  </div>
-                                  </td>
-                              </tr>
-                              @endforeach                 
-                           </tbody>
-                        </table>
-                      </div>
-                      </section>
-                  </div>
-              </div>
+  <div class="col-lg-12" >
+    <section class="panel">
+      <span id="sucess"></span>
+      <header class="panel-heading">
+        REGISTERED COURSES
+      </header>
+      <div id="re">
+        <table class="table table-striped table-advance table-hover" id="rows">
+         <tbody>
+          <tr>
+           <th><i class="icon_profile"></i> ID</th>
+           <th><i class="fa fa-book"></i> COURSE NAME</th>
+           <th><i class="fa fa-book"></i> COURSE DESCRIPTION</th>
+           <th><i class="icon_cogs"></i> Action</th>
+         </tr>
+         @foreach ($courses as $course)
+         <tr>
+           <td >{{$course->course_id}}</td>
+           <td>{{$course->course_name}}</td>
+           <td>{{$course->course_description}}</td>
+           <td>
+            <div class="btn-group">
+              <a class="btn btn-primary update-btn" title="EDIT COURSE" data-id="{{$course->course_id}}"><i class="fa fa-pencil-square-o" ></i></a>
+              <a class="btn btn-danger" title="DELETE COURSE" onclick="fun({{$course->course_id}})"> <i class="icon_close_alt2"></i></a>
+            </div>
+          </td>
+        </tr>
+        @endforeach                 
+      </tbody>
+    </table>
+  </div>
+</section>
+</div>
+</div>
+
+<form action="{{ route('updatecourse') }}" method="post" id="form-updatepost">
+  {{csrf_field()}}
+  <input type="hidden" name="id" id="course_id">
+
+
+</form>
 
 
 
-	@endsection
+@endsection
 {{csrf_field()}}
 
-  @section('script')
+@section('script')
 
-  <script >
-    function fun($id) {
-     var r = confirm("Do you want to remove record?");
-    if (r == true) {
-       var id=$id;
-      $.post('{{ route('deleteadmin') }}',  {id:id,'_token':$('input[name=_token]').val()}, function(data) {
-        console.log(data);
-          $('#sucess').html('<div class="alert alert-success fade in"><strong>Success!</strong> Admin has been DELETED</div>');
-        $("#re").load(location.href + " #re>*", "");
-        });
-    } 
-      
+<script >
+  function fun($course_id) {
+   var r = confirm("Do you want to remove record?");
+   if (r == true) {
+     var course_id=$course_id;
+     $.post('{{ route('deletecourse') }}',  {course_id:course_id,'_token':$('input[name=_token]').val()}, function(data) {
+      console.log(data);
+       $("#sucess").fadeIn();
+      $('#sucess').html('<div class="alert alert-success fade in"><strong>Success!</strong> Course has been DELETED</div>');
+         $("#sucess").fadeOut(5000);
+      scrollTo(0,0);
+      $("#re").load(location.href + " #re>*", "");
+    }).fail(function(xhr, textStatus, errorThrown) { 
+   // alert(xhr.responseText);
+     $("#sucess").fadeIn();
+     $('#sucess').html('<div class="alert alert-block alert-danger fade in"><strong>Oh snap!!</strong> Course can not be deleted, it has registered Exams or Classrooms please remove them first.</div>');
+     $("#sucess").fadeOut(5000);
+      scrollTo(0,0);
+     });
+   } 
+
         /*var table=' <tbody> <tr><th><i class="icon_profile"></i> ID</th><th><i class="icon_profile"></i> USERNAME</th><th><i class="icon_mail_alt"></i> PASSWORD</th><th><i class="icon_mail_alt"></i> EMAIL</th><th><i class="icon_cogs"></i> Action</th></tr>';
           for (i in data)
          {
@@ -77,17 +93,30 @@
          table=table+'</tbody>';
 
         $('#rows').html(table);
-*/
+        */
 //loction.reload(true);
-      
-    }
+
+}
+
+$(".table tr").each(function(index, val) {
+  $(this).find('.update-btn').each(function(index, val) {
+    $(this).click(function(event) {
+
+      var id=$(this).data('id');
+
+      $("#course_id").val(id);
+      $("#form-updatepost").submit();
+
+    });
+
+  });
+
+});
+
+
+</script>
 
 
 
 
-  </script>
-  
-
-
-
-  @endsection
+@endsection

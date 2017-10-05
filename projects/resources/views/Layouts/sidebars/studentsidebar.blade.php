@@ -16,41 +16,50 @@
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
                       <ul class="sub">
-                          <li><a class="" href="{{ route('studentclasses') }}">All Students Classes</a></li>
+                          <li><a class="" href="{{ route('studentclasses') }}">Students Classes</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
-                          <i class="icon_genius"></i>
+                          <i class="fa fa-book"></i>
                           <span>COURSES</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
                       <ul class="sub">
-                          <li><a class="" href="{{ route('studentcourses') }}">All Student Courses</a></li>
+                          <li><a class="" href="{{ route('studentcourses') }}">Student Courses</a></li>
                           <li><a class="" href="{{ route('studentteachers') }}"><span>Course Teachers</span></a></li>
                       </ul>
                   </li>                                               
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
-                          <i class="icon_documents_alt"></i>
+                          <i class="fa fa-clipboard"></i>
                           <span>EXAMS</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
                       <ul class="sub">                          
-                          <li><a class="" href="studentexams">All Student Exams</a></li>
+                          <li><a class="" href="studentexams">Student Exams</a></li>
                       </ul>
                   </li>
 
                    <li>
-                      <a class="" href="#">
-                          <i class="icon_genius"></i>
+                      <a class="" href="{{ route('studentattendence') }}">
+                          <i class="fa fa-calendar"></i>
                           <span>ATTENDENCE</span>
                       </a>
                   </li>
                   <li>                     
                       <a class="" href="{{ route('studentresults') }}">
-                          <i class="icon_piechart"></i>
+                          <i class="fa fa-list-alt"></i>
                           <span>RESULT</span>
+                          
+                      </a>
+                                         
+                  </li>
+
+                  <li>                     
+                      <a class="" href="{{ route('studentfee') }}">
+                          <i class="fa fa-money"></i>
+                          <span>FEE</span>
                           
                       </a>
                                          
