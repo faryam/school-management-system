@@ -31,7 +31,7 @@ class LoginController extends Controller
               return redirect()->route('parentdashboard');
             }
 
-            return view('Login');
+            return view('login');
           }
 
           public function postLogin(Request $request)

@@ -39,7 +39,7 @@
            <td >{{$student->student->student_id}}</td>
            <td>{{$student->student->student_first_name}} {{$student->student->student_last_name}}</td>
            <td>{{$student->course->course_name}}</td>
-           <td>{{$student->class->class_name}}</td>
+           <td>{{$course->class->class_name}}</td>
          </tr>
          @endforeach  
          @endforeach                 

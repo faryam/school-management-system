@@ -39,7 +39,7 @@
          <tr>
           <td >{{$student->student_id}}</td>
           <td>{{$student->student_first_name}} {{$student->student_last_name}}</td>
-          <td>{{$student->student_sex}}</td>
+          <td> @if ($student->student_sex=="1") MALE @else FEMALE @endif</td>
           <td>{{$student->student_dob}}</td>
           <td>{{$student->user->email}}</td>
           <td>{{$student->student_phone_number}}</td>

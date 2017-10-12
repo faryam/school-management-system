@@ -48,7 +48,7 @@
           <tr>
             <td >{{$teacher->teacher_id}}</td>
             <td>{{$teacher->teacher_first_name}} {{$teacher->teacher_last_name}}</td>
-            <td>{{$teacher->teacher_sex}}</td>
+            <td> @if ($teacher->teacher_sex=="1") MALE @else FEMALE @endif</td>
             <td>{{$teacher->teacher_dob}}</td>
             <td>{{$teacher->user->email}}</td>
             <td>{{$teacher->teacher_phone_number}}</td>

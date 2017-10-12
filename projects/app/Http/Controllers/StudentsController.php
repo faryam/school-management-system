@@ -13,7 +13,7 @@ use App\Student_course;
 use App\Course;
 use App\Student_exam_grade;
 use App\Students_attendence;
-
+use App\Fee_Student;
 
 class StudentsController extends Controller
 {
@@ -170,6 +170,7 @@ public function studentpasswordChange(Request $request)
         Student_exam_grade::where('student_id', $request->student_id)->delete();
         Student_course::where('student_id', $request->student_id)->delete();
         Students_attendence::where('student_id', $request->student_id)->delete();
+        Fee_Student::where('student_id', $request->student_id)->delete();
         Student::where('student_id', $request->student_id)->delete();
         User::where('id',$id)->delete();
         return $request->all();

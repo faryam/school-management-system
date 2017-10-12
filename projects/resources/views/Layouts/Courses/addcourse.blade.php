@@ -73,7 +73,7 @@
      scrollTo(0,0);
  		console.log(data);
  	}).fail(function(xhr, textStatus, errorThrown) { 
- 		//alert(xhr.responseText);
+ 		alert(xhr.responseText);
  		//$('#sucess').html('<div class="alert alert-block alert-danger fade in"><strong>Oh snap!!</strong> classroom name is already taken.</div>');
  	  $('#coursename').after('<span class="text-danger"><strong>Oh snap!!</strong>Course Name is already taken.</span>');
  		 });

@@ -153,7 +153,7 @@
     $.post("{{ route('storeparent') }}", {first_name:first_name,last_name:last_name,sex:sex,dob:dob,phone_number:phone_number,address:address,name:name,password:password,email:email,role_name:'parent','_token':$('input[name=_token]').val()}, function(data) {
      
      $("#sucess").fadeIn();
-     $('#sucess').html('<div class="alert alert-success fade in"><strong>Success!</strong> Admin has been registered</div>');
+     $('#sucess').html('<div class="alert alert-success fade in"><strong>Success!</strong> Parent has been registered</div>');
      $("#sucess").fadeOut(3000);
      scrollTo(0,0);
      console.log(data);

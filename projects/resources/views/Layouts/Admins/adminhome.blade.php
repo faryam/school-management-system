@@ -44,6 +44,8 @@
 
 	</div>
 </div>
+
+    <a class="btn btn-primary pull-right" href="{{ route('webreport') }}"></i>MORE</a>
  <br><br><br>
 <div class="row">
 	<div class="col-lg-12" >

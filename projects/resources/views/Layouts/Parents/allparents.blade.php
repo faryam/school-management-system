@@ -37,7 +37,7 @@
           <tr>
            <td >{{$parent->parent_id}}</td>
            <td>{{$parent->parent_first_name}} {{$parent->parent_last_name}}</td>
-           <td>{{$parent->parent_sex}}</td>
+           <td> @if ($parent->parent_sex=="1") MALE @else FEMALE @endif</td>
            <td>{{$parent->user->email}}</td>
            <td>{{$parent->parent_phone_number}}</td>
            <td>{{$parent->parent_address}}</td>
